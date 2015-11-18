@@ -103,6 +103,9 @@ let mapleader=" "
 " shortcuts
 map <Leader>d orequire 'pry'<cr>binding.pry<esc>:w<cr>
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p")
+nmap <Leader>n :bn<CR>
+nmap <Leader>p :bprevious<CR>
+nmap <Leader>bl :ls<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -147,8 +150,7 @@ let g:ctrlp_custom_ignore = {
 let g:syntastic_check_on_open = 1
 let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
 let g:syntastic_javascript_checkers = ['jshint', 'jscs']
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_exec = '/home/vagrant/.rbenv/shims/ruby /home/vagrant/.rbenv/shims/rubocop'
+" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
