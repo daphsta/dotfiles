@@ -4,8 +4,8 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 " General
-Plugin 'bling/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
@@ -13,8 +13,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
 Plugin 'chriskempson/base16-vim'
-Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'tpope/vim-dispatch'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'daphsta/fzf',{ 'dir': '~/.fzf', 'do': './install --all' }
 
 " Programming
 Plugin 'scrooloose/syntastic'
@@ -22,6 +23,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'daphsta/snippetsEmu'
 
 " Ruby
 Plugin 'vim-ruby/vim-ruby'
@@ -67,6 +69,7 @@ set exrc
 set secure
 " Enable line numbers
 set number
+set relativenumber
 " Enable syntax highlighting
 syntax enable
 " Highlight current line
@@ -106,6 +109,14 @@ vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p")
 nmap <Leader>n :bn<CR>
 nmap <Leader>p :bprevious<CR>
 nmap <Leader>bl :ls<CR>
+nnoremap <silent> <C-F> :FZF<CR>
+
+" CtrlP bundle
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\v[\/](target|coverage|log|vendor|node_modules|reports|build|tmp|\.git)$',
+      \ 'file': '\v(tags)$'
+      \ }
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -126,7 +137,7 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "Dispatch rspec {spec} -fd"
+let g:rspec_command = '!bundle exec rspec -I . -f d {spec} '
 let g:rspec_runner = "os_x_iterm2"
 
 " NERDTree bundle
@@ -140,12 +151,6 @@ let Tlist_WinWidth=50
 map <F8> :!/usr/bin/ctags -R . $(bundle list --paths)<CR>
 map <F4> :TlistToggle<cr>
 
-" CtrlP bundle
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](target|coverage|log|vendor|node_modules|reports|build|tmp|\.git)$',
-  \ 'file': '\v(tags)$'
-  \ }
 " Syntastic
 let g:syntastic_check_on_open = 1
 let g:syntastic_html_tidy_ignore_errors = ['proprietary attribute "myhotcompany-']
