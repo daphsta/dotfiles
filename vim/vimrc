@@ -109,7 +109,10 @@ vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p")
 nmap <Leader>n :bn<CR>
 nmap <Leader>p :bprevious<CR>
 nmap <Leader>bl :ls<CR>
-nnoremap <silent> <C-F> :FZF<CR>
+nnoremap <silent> <Leader>f :FZF<CR>
+nnoremap <silent> <Leader>v :call fzf#run({
+      \ 'right': winwidth(',') / 2,
+      \ 'sink': 'vertical botright split' })<CR>
 
 " CtrlP bundle
 let g:ctrlp_show_hidden = 1
